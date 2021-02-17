@@ -25,12 +25,13 @@ public class TeamController {
     @PostMapping("/add")
     public ResponseEntity<Team> addNewTeam(@RequestBody Team team) {
         Team newTeam = teamService.addNewTeam(team);
-        return new ResponseEntity<>(team, HttpStatus.OK);
+        return new ResponseEntity<>(newTeam, HttpStatus.OK);
     }
 
-    @PutMapping("/update/{id}")
-    public void updateTeam(@ModelAttribute TeamDto teamDto, @PathVariable("id") int id) {
-        teamService.updateTeam(teamDto, id);
+    @PutMapping("/update")
+    public ResponseEntity<Team> updateTeam(@RequestBody Team team) {
+        Team updateTeam = teamService.updateTeam(team);
+        return new ResponseEntity<>(updateTeam, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")

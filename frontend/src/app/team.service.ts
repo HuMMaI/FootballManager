@@ -18,4 +18,12 @@ export class TeamService {
   public addTeam(team: Team): Observable<Team> {
     return this.http.post<Team>(`${this.apiServerUrl}/team/api/add`, team);
   }
+
+  public updateTeam(team: Team): Observable<Team> {
+    return this.http.put<Team>(`${this.apiServerUrl}/team/api/update`, team);
+  }
+
+  public deleteTeam(teamId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/team/api/delete/${teamId}`);
+  }
 }

@@ -4,7 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
-import {TeamService} from './teamService';
+import {TeamService} from './team.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,7 @@ import {TeamService} from './teamService';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule, FormsModule
+    HttpClientModule, FormsModule, NgbModule
   ],
   providers: [TeamService],
   bootstrap: [AppComponent]

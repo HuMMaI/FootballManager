@@ -1,12 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" style="color:white;">Employee Manager</a>
+  <a class="navbar-brand" style="color:white;">Football Manager</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-<!--        <a class="nav-link" (click)="onOpenModal(null, 'add')">Add Employee <span class="sr-only">(current)</span></a>-->
+        <a class="nav-link" (click)="onOpenTeamModal(null, 'add')">Add Team <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="onOpenTeamModal(null, 'add')">Add Footballer <span class="sr-only"></span></a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -15,20 +18,6 @@
     </form>
   </div>
 </nav>
-
-<div>
-  <form #addForm="ngForm" (ngSubmit)="onAddTeam(addForm)">
-    <div class="form-group">
-      <label for="name">Team name</label>
-      <input type="text" class="form-control" id="name" ngModel name="name" aria-describedby="emailHelp" placeholder="Enter team name">
-    </div>
-    <div class="form-group">
-      <label for="numberOfPlayers">Number of players</label>
-      <input type="number" class="form-control" id="numberOfPlayers" ngModel name="numberOfPlayers" placeholder="Enter number of players">
-    </div>
-    <button type="submit" class="btn btn-primary">Add team</button>
-  </form>
-</div>
 
 <div class="container" id="main-container">
     <div class="row">
@@ -40,20 +29,112 @@
             </div>
             <div class="col-6 card-title align-self-center mb-0">
               <h5>{{team?.name}}</h5>
-              <p class="m-0">{{team?.numberOfPlayers}}</p>
+              <p class="m-0">{{team?.country}}</p>
             </div>
           </div>
           <ul class="list-group list-group-flush">
-<!--            <li class="list-group-item"><i class="fa fa-envelope float-right"></i>{{employee?.email}}</li>-->
+            <li class="list-group-item"><i class="fa fa-user float-right"></i>{{team?.numberOfPlayers}}</li>
 <!--            <li class="list-group-item"><i class="fa fa-phone float-right"></i>Phone : {{employee?.phone}}</li>-->
           </ul>
           <div class="card-body">
             <div class="float-right btn-group btn-group-sm">
-<!--              <a (click)="onOpenModal(employee, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>-->
-<!--              <a (click)="onOpenModal(employee, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>-->
+              <a (click)="onOpenTeamModal(team, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+              <a (click)="onOpenFootballerModal(team, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
             </div>
           </div>
         </div>
       </div>
+  </div>
+</div>
+
+<div class="modal fade" id="addTeamModal" tabindex="-1" role="dialog" aria-labelledby="addTeamModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="TeamModalLabel">Add Team</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #addForm="ngForm" (ngSubmit)="onAddTeam(addForm)">
+          <div class="form-group">
+            <label for="name">Team name</label>
+            <input type="text" class="form-control" id="name" ngModel name="name" aria-describedby="emailHelp" placeholder="Enter team name">
+          </div>
+          <div class="form-group">
+            <label for="numberOfPlayers">Number of players</label>
+            <input type="number" class="form-control" id="numberOfPlayers" ngModel name="numberOfPlayers" placeholder="Enter number of players">
+          </div>
+          <div class="form-group">
+            <label for="country">Country</label>
+            <input type="text" class="form-control" id="country" ngModel name="country" placeholder="Enter country">
+          </div>
+          <button type="button" id="add-team-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">Add team</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="updateEditModal" tabindex="-1" role="dialog" aria-labelledby="teamEditModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateTeamModalLabel">Edit Team {{editTeam?.name}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #editForm="ngForm">
+          <div class="form-group">
+            <label for="name">Team name</label>
+            <input type="text" class="form-control" id="name" ngModel="{{editTeam?.name}}" name="name" aria-describedby="emailHelp" placeholder="Enter team name">
+          </div>
+          <div class="form-group">
+            <label for="numberOfPlayers">Number of players</label>
+            <input type="number" class="form-control" id="numberOfPlayers" ngModel="{{editTeam?.numberOfPlayers}}" name="numberOfPlayers" placeholder="Enter number of players">
+          </div>
+          <div class="form-group">
+            <label for="country">Country</label>
+            <input type="text" class="form-control" id="country" ngModel="{{editTeam?.country}}" name="country" placeholder="Enter country">
+          </div>
+          <input type="hidden" ngModel="{{editTeam?.id}}" name="id">
+          <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+          <button (click)="onUpdateTeam(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteTeamModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModelLabel">Delete Team</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete team {{deleteTeam?.name}}?</p>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+          <button (click)="onDeleteTeam(deleteTeam?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div *ngIf="teams?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+  <div class="alert alert-info" role="alert">
+    <h4 class="alert-heading">NO TEAMS!</h4>
+    <p>No Teams were found.</p>
   </div>
 </div>

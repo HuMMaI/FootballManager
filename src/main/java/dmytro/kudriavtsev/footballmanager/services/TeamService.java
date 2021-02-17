@@ -29,14 +29,8 @@ public class TeamService {
         return teamRepository.findById(id).get();
     }
 
-    public void updateTeam(TeamDto teamDto, int id) {
-        Team team = findTeamById(id);
-
-        team.setName(teamDto.getName());
-        team.setNumberOfPlayers(teamDto.getNumberOfPlayers());
-//        team.setPlayers(teamDto.getPlayers());
-
-        teamRepository.save(team);
+    public Team updateTeam(Team team) {
+        return teamRepository.save(team);
     }
 
     public void deleteTeam(int id) {
