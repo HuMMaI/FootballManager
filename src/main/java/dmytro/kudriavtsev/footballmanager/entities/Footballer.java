@@ -17,17 +17,28 @@ public class Footballer {
 
     private int age;
 
-    @ManyToOne
-    @JoinColumn(name = "team_id")
-    private Team team;
+//    @ManyToOne
+//    @JoinColumn(name = "team_id")
+//    private Team team;
 
     private int price;
 
-    public Footballer(String firstName, String lastName, int age, Team team, int price) {
+//    public Footballer(String firstName, String lastName, int age, Team team, int price) {
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.age = age;
+//        this.team = team;
+//        this.price = price;
+//    }
+
+
+    public Footballer() {
+    }
+
+    public Footballer(String firstName, String lastName, int age, int price) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
-        this.team = team;
         this.price = price;
     }
 
@@ -63,13 +74,13 @@ public class Footballer {
         this.age = age;
     }
 
-    public Team getTeam() {
-        return team;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
-    }
+//    public Team getTeam() {
+//        return team;
+//    }
+//
+//    public void setTeam(Team team) {
+//        this.team = team;
+//    }
 
     public int getPrice() {
         return price;

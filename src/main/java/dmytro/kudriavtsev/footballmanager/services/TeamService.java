@@ -21,8 +21,8 @@ public class TeamService {
         return teamRepository.findAll();
     }
 
-    public void addNewTeam(Team team) {
-        teamRepository.save(team);
+    public Team addNewTeam(Team team) {
+        return teamRepository.save(team);
     }
 
     public Team findTeamById(int id) {
@@ -34,7 +34,7 @@ public class TeamService {
 
         team.setName(teamDto.getName());
         team.setNumberOfPlayers(teamDto.getNumberOfPlayers());
-        team.setPlayers(teamDto.getPlayers());
+//        team.setPlayers(teamDto.getPlayers());
 
         teamRepository.save(team);
     }

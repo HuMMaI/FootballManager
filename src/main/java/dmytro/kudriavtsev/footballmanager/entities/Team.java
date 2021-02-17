@@ -1,5 +1,7 @@
 package dmytro.kudriavtsev.footballmanager.entities;
 
+import org.springframework.lang.Nullable;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -15,13 +17,26 @@ public class Team {
     @Column(name = "number_of_players")
     private int numberOfPlayers;
 
-    @OneToMany(mappedBy = "team")
-    private List<Footballer> players;
+    private String country;
 
-    public Team(String name, int numberOfPlayers, List<Footballer> players) {
+//    @Nullable
+//    @OneToMany(mappedBy = "team")
+//    private List<Footballer> players;
+
+//    public Team(String name, int numberOfPlayers, List<Footballer> players) {
+//        this.name = name;
+//        this.numberOfPlayers = numberOfPlayers;
+//        this.players = players;
+//    }
+
+
+    public Team() {
+    }
+
+    public Team(String name, int numberOfPlayers, String country) {
         this.name = name;
         this.numberOfPlayers = numberOfPlayers;
-        this.players = players;
+        this.country = country;
     }
 
     public int getId() {
@@ -48,11 +63,19 @@ public class Team {
         this.numberOfPlayers = numberOfPlayers;
     }
 
-    public List<Footballer> getPlayers() {
-        return players;
+//    public List<Footballer> getPlayers() {
+//        return players;
+//    }
+//
+//    public void setPlayers(List<Footballer> players) {
+//        this.players = players;
+//    }
+
+    public String getCountry() {
+        return country;
     }
 
-    public void setPlayers(List<Footballer> players) {
-        this.players = players;
+    public void setCountry(String country) {
+        this.country = country;
     }
 }
