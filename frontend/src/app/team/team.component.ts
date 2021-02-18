@@ -3,6 +3,7 @@ import {Team} from '../team';
 import {TeamService} from '../team.service';
 import {HttpErrorResponse} from '@angular/common/http';
 import {NgForm} from '@angular/forms';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-team',

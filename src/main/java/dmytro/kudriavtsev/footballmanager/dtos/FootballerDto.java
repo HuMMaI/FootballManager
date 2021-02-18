@@ -1,41 +1,13 @@
-package dmytro.kudriavtsev.footballmanager.entities;
+package dmytro.kudriavtsev.footballmanager.dtos;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "players")
-public class Footballer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class FootballerDto {
     private int id;
-
-    @Column(name = "first_name")
     private String firstName;
-
-    @Column(name = "last_name")
     private String lastName;
-
     private int age;
-
-    @ManyToOne
-    @JoinColumn(name = "team_id")
-    private Team team;
-
+    private int team;
     private int experience;
-
     private int price;
-
-    public Footballer() {
-    }
-
-    public Footballer(String firstName, String lastName, int age, Team team, int experience, int price) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-        this.team = team;
-        this.experience = experience;
-        this.price = price;
-    }
 
     public int getId() {
         return id;
@@ -69,20 +41,12 @@ public class Footballer {
         this.age = age;
     }
 
-    public Team getTeam() {
+    public int getTeam() {
         return team;
     }
 
-    public void setTeam(Team team) {
+    public void setTeam(int team) {
         this.team = team;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
     }
 
     public int getExperience() {
@@ -91,5 +55,13 @@ public class Footballer {
 
     public void setExperience(int experience) {
         this.experience = experience;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

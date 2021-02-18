@@ -1,6 +1,6 @@
 package dmytro.kudriavtsev.footballmanager.entities;
 
-import org.springframework.lang.Nullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
@@ -19,24 +19,18 @@ public class Team {
 
     private String country;
 
-//    @Nullable
-//    @OneToMany(mappedBy = "team")
-//    private List<Footballer> players;
-
-//    public Team(String name, int numberOfPlayers, List<Footballer> players) {
-//        this.name = name;
-//        this.numberOfPlayers = numberOfPlayers;
-//        this.players = players;
-//    }
-
+    @JsonIgnore
+    @OneToMany(mappedBy = "team")
+    private List<Footballer> players;
 
     public Team() {
     }
 
-    public Team(String name, int numberOfPlayers, String country) {
+    public Team(String name, int numberOfPlayers, String country, List<Footballer> players) {
         this.name = name;
         this.numberOfPlayers = numberOfPlayers;
         this.country = country;
+        this.players = players;
     }
 
     public int getId() {
@@ -63,13 +57,13 @@ public class Team {
         this.numberOfPlayers = numberOfPlayers;
     }
 
-//    public List<Footballer> getPlayers() {
-//        return players;
-//    }
-//
-//    public void setPlayers(List<Footballer> players) {
-//        this.players = players;
-//    }
+    public List<Footballer> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Footballer> players) {
+        this.players = players;
+    }
 
     public String getCountry() {
         return country;

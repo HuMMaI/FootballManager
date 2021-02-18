@@ -5,6 +5,7 @@ export interface Footballer {
   firstName: string;
   lastName: string;
   age: number;
-  // team: Team;
+  team: Team;
+  experience: number;
   price: number;
 }

@@ -3,6 +3,8 @@ import {Footballer} from '../footballer';
 import {FootballerService} from '../footballer.service';
 import {HttpErrorResponse} from '@angular/common/http';
 import {NgForm} from '@angular/forms';
+import {TeamService} from '../team.service';
+import {Team} from '../team';
 
 @Component({
   selector: 'app-footballer',
@@ -13,11 +15,24 @@ export class FootballerComponent implements OnInit {
   public players: Footballer[];
   public editFootballer: Footballer;
   public deleteFootballer: Footballer;
+  public teams: Team[];
+  public selectedTeam: Team;
 
-  constructor(private footballerService: FootballerService) { }
+  constructor(private footballerService: FootballerService, private teamService: TeamService) { }
 
   ngOnInit(): void {
     this.getPlayers();
+  }
+
+  public getTeams(): void {
+    this.teamService.getTeams().subscribe(
+      (response: Team[]) => {
+        this.teams = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
   }
 
   public getPlayers(): void {
@@ -78,6 +93,7 @@ export class FootballerComponent implements OnInit {
     button.setAttribute('data-toggle', 'modal');
     if (mode === 'add') {
       button.setAttribute('data-target', '#addFootballerModal');
+      this.getTeams();
     }
     if (mode === 'edit') {
       this.editFootballer = footballer;

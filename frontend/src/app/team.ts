@@ -4,6 +4,6 @@ export interface Team {
   id: number;
   name: string;
   numberOfPlayers: number;
-  // players: Footballer[];
+  players: Footballer[];
   country: string;
 }

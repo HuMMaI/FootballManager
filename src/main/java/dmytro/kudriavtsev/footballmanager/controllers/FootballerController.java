@@ -1,5 +1,6 @@
 package dmytro.kudriavtsev.footballmanager.controllers;
 
+import dmytro.kudriavtsev.footballmanager.dtos.FootballerDto;
 import dmytro.kudriavtsev.footballmanager.entities.Footballer;
 import dmytro.kudriavtsev.footballmanager.services.FootballerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,8 @@ public class FootballerController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Footballer> addNewTeam(@RequestBody Footballer footballer) {
-        Footballer newFootballer = footballerService.addNewFootballer(footballer);
+    public ResponseEntity<Footballer> addNewTeam(@RequestBody FootballerDto footballerDto) {
+        Footballer newFootballer = footballerService.addNewFootballer(footballerDto);
         return new ResponseEntity<>(newFootballer, HttpStatus.OK);
     }
 
