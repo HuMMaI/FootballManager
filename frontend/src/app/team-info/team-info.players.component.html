@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-md-3">
+    <label>First name</label>
+  </div>
+  <div class="col-md-3">
+    <label>Last name</label>
+  </div>
+  <div class="col-md-3">
+    <label>Age</label>
+  </div>
+  <div class="col-md-3">
+    <label>Experience</label>
+  </div>
+</div>
+<div *ngFor="let footballer of players" class="row">
+  <div class="col-md-3">
+    <p>{{footballer?.firstName}}</p>
+  </div>
+  <div class="col-md-3">
+    <p>{{footballer?.lastName}}</p>
+  </div>
+  <div class="col-md-3">
+    <p>{{footballer?.age}}</p>
+  </div>
+  <div class="col-md-3">
+    <p>{{footballer?.experience}}</p>
+  </div>
+</div>

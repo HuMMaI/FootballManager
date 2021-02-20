@@ -92,5 +92,4 @@ export class TeamComponent implements OnInit {
     container.appendChild(button);
     button.click();
   }
-
 }

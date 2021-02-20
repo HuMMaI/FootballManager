@@ -13,7 +13,7 @@ import {TeamComponent} from './team/team.component';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private footballerService: FootballerService) {
+  constructor() {
   }
 
   ngOnInit(): void {
