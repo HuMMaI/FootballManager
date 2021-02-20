@@ -64,7 +64,7 @@ export class TeamInfoComponent implements OnInit {
       }
     );
 
-    this.statementService.getOtherPlayers().subscribe(
+    this.statementService.getOtherPlayers(this.teamId).subscribe(
       (response: Statement[]) => {
         this.statements = response;
       },

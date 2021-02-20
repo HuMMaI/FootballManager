@@ -35,6 +35,6 @@ public interface StatementRepository extends JpaRepository<Statement, Integer> {
     @Query("SELECT s FROM Statement s WHERE s.footballer.id = :footballerId")
     Statement findByFootballerId(@Param("footballerId") int footballerId);
 
-    @Query("SELECT s FROM Statement s WHERE s.team IS NOT NULL")
-    List<Statement> findAllOtherPlayers();
+    @Query("SELECT s FROM Statement s WHERE s.team IS NOT NULL AND s.team.id <> :teamId")
+    List<Statement> findAllOtherPlayers(@Param("teamId") int teamId);
 }

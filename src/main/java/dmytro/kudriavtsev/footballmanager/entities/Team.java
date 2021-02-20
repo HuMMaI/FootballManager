@@ -18,14 +18,17 @@ public class Team {
 
     private int commission;
 
+    private int budget;
+
     public Team() {
     }
 
-    public Team(String name, int numberOfPlayers, String country, int commission) {
+    public Team(String name, int numberOfPlayers, String country, int commission, int budget) {
         this.name = name;
         this.numberOfPlayers = numberOfPlayers;
         this.country = country;
         this.commission = commission;
+        this.budget = budget;
     }
 
     public int getId() {
@@ -66,5 +69,13 @@ public class Team {
 
     public void setCommission(int commission) {
         this.commission = commission;
+    }
+
+    public int getBudget() {
+        return budget;
+    }
+
+    public void setBudget(int budget) {
+        this.budget = budget;
     }
 }

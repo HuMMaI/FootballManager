@@ -17,6 +17,9 @@
       <ul class="list-group list-group-flush">
         <li class="list-group-item"><i class="fa fa-user float-right"></i>{{team?.numberOfPlayers}}</li>
       </ul>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><b>Budget: </b> {{team?.budget}}</li>
+      </ul>
       <div class="card-body">
         <div class="float-left btn-group btn-group-sm">
           <a [routerLink]="['/team']" [queryParams]="{teamId:team?.id}" class="btn btn-outline-success">Info</a>
@@ -54,7 +57,11 @@
             <input type="text" class="form-control" id="country" ngModel name="country" placeholder="Enter country">
           </div>
           <div class="form-group">
-            <label for="country">Commission</label>
+            <label for="budget">Budget</label>
+            <input type="number" class="form-control" id="budget" ngModel name="budget" placeholder="Enter budget">
+          </div>
+          <div class="form-group">
+            <label for="commission">Commission</label>
             <input type="number" class="form-control" id="commission" ngModel name="commission" placeholder="Enter commission">
           </div>
           <button type="button" id="add-team-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -87,6 +94,10 @@
           <div class="form-group">
             <label for="country">Country</label>
             <input type="text" class="form-control" id="country" ngModel="{{editTeam?.country}}" name="country" placeholder="Enter country">
+          </div>
+          <div class="form-group">
+            <label for="budget">Budget</label>
+            <input type="number" class="form-control" id="budget" ngModel="{{editTeam?.budget}}" name="budget" placeholder="Enter budget">
           </div>
           <div class="form-group">
             <label for="country">Commission</label>

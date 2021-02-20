@@ -5,6 +5,7 @@ import dmytro.kudriavtsev.footballmanager.entities.Footballer;
 import dmytro.kudriavtsev.footballmanager.entities.Statement;
 import dmytro.kudriavtsev.footballmanager.entities.Team;
 import dmytro.kudriavtsev.footballmanager.repos.StatementRepository;
+import dmytro.kudriavtsev.footballmanager.repos.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +15,12 @@ import java.util.stream.Collectors;
 @Service
 public class StatementService {
     private final StatementRepository statementRepository;
+    private final TeamRepository teamRepository;
 
     @Autowired
-    public StatementService(StatementRepository statementRepository) {
+    public StatementService(StatementRepository statementRepository, TeamRepository teamRepository) {
         this.statementRepository = statementRepository;
+        this.teamRepository = teamRepository;
     }
 
     public List<Statement> getStatements() {
@@ -38,12 +41,17 @@ public class StatementService {
 
     public void addFootballer(FootballerAddToTeamDto footballerAddToTeamDto) {
         Statement statement = statementRepository.findByFootballerId(footballerAddToTeamDto.getFootballer().getId());
+
+        Team team = footballerAddToTeamDto.getTeam();
+        team.setBudget(team.getBudget() - footballerAddToTeamDto.getFootballer().getPrice());
+        teamRepository.save(team);
+
         statement.setTeam(footballerAddToTeamDto.getTeam());
 
         statementRepository.save(statement);
     }
 
-    public List<Statement> getOtherPlayers() {
-        return statementRepository.findAllOtherPlayers();
+    public List<Statement> getOtherPlayers(int teamId) {
+        return statementRepository.findAllOtherPlayers(teamId);
     }
 }

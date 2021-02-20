@@ -41,9 +41,9 @@ public class StatementController {
         statementService.addFootballer(footballerAddToTeamDto);
     }
 
-    @GetMapping("/players/other")
-    public ResponseEntity<List<Statement>> getOtherPlayers() {
-        List<Statement> statements = statementService.getOtherPlayers();
+    @GetMapping("/players/other/{id}")
+    public ResponseEntity<List<Statement>> getOtherPlayers(@PathVariable("id") int teamId) {
+        List<Statement> statements = statementService.getOtherPlayers(teamId);
         return new ResponseEntity<>(statements, HttpStatus.OK);
     }
 }

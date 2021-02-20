@@ -41,6 +41,6 @@
     <p>{{statement?.team.name}}</p>
   </div>
   <div class="col-md-1">
-    <a class="btn btn-success tooltips"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+    <a (click)="onBuyFootballer(statement?.footballer)" class="btn btn-success tooltips"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
   </div>
 </div>

@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
 import {environment} from '../environments/environment';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Statement} from './statement';
 import {Footballer} from './footballer';
-import {FootballerAddDto} from './footballer.add.dto';
 import {Team} from './team';
 
 @Injectable({providedIn: 'root'})
@@ -30,7 +29,7 @@ export class StatementService {
     return this.http.put<void>(`${this.apiServerUrl}/statement/api/players/add`, {footballer, team});
   }
 
-  public getOtherPlayers(): Observable<Statement[]> {
-    return this.http.get<Statement[]>(`${this.apiServerUrl}/statement/api/players/other`);
+  public getOtherPlayers(teamId: number): Observable<Statement[]> {
+    return this.http.get<Statement[]>(`${this.apiServerUrl}/statement/api/players/other/${teamId}`);
   }
 }

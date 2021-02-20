@@ -13,7 +13,6 @@ import {HttpErrorResponse} from '@angular/common/http';
 export class TeamInfoFreePlayersComponent {
   @Input() public players: Footballer[];
   @Input() public team: Team;
-  public footballerDto: FootballerAddDto;
 
   constructor(private statementService: StatementService) {
   }
