@@ -41,19 +41,24 @@ public class FootballerService {
         footballer.setLastName(footballerAddDto.getLastName());
         footballer.setAge(footballerAddDto.getAge());
         footballer.setExperience(footballerAddDto.getExperience());
-        footballer.setPrice(footballerAddDto.getPrice());
 
-        Footballer newFootballer = footballerRepository.save(footballer);
+        int price = footballer.getExperience() * 100000 / footballer.getAge();
 
         Statement statement = new Statement();
 
-        statement.setFootballer(newFootballer);
-
         if (teamMaybe.isPresent()) {
+            int commission = teamMaybe.get().getCommission() * price / 100;
+            int fullPrice = price + commission;
+            footballer.setPrice(fullPrice);
             statement.setTeam(teamMaybe.get());
         } else {
+            footballer.setPrice(price);
             statement.setTeam(null);
         }
+
+        Footballer newFootballer = footballerRepository.save(footballer);
+
+        statement.setFootballer(newFootballer);
 
         statementRepository.save(statement);
 

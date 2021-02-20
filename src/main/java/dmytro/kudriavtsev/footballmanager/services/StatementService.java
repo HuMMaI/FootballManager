@@ -42,4 +42,8 @@ public class StatementService {
 
         statementRepository.save(statement);
     }
+
+    public List<Statement> getOtherPlayers() {
+        return statementRepository.findAllOtherPlayers();
+    }
 }

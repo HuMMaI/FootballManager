@@ -40,4 +40,10 @@ public class StatementController {
     public void addFootballer(@RequestBody FootballerAddToTeamDto footballerAddToTeamDto) {
         statementService.addFootballer(footballerAddToTeamDto);
     }
+
+    @GetMapping("/players/other")
+    public ResponseEntity<List<Statement>> getOtherPlayers() {
+        List<Statement> statements = statementService.getOtherPlayers();
+        return new ResponseEntity<>(statements, HttpStatus.OK);
+    }
 }

@@ -27,8 +27,10 @@ export class StatementService {
   }
 
   public addFootballer(footballer: Footballer, team: Team): Observable<void> {
-    // let params: HttpParams;
-    // params = new HttpParams().set('footballer', '').set('team', team);
     return this.http.put<void>(`${this.apiServerUrl}/statement/api/players/add`, {footballer, team});
+  }
+
+  public getOtherPlayers(): Observable<Statement[]> {
+    return this.http.get<Statement[]>(`${this.apiServerUrl}/statement/api/players/other`);
   }
 }

@@ -1,24 +1,30 @@
 package dmytro.kudriavtsev.footballmanager.services;
 
+import dmytro.kudriavtsev.footballmanager.entities.Footballer;
+import dmytro.kudriavtsev.footballmanager.entities.Statement;
 import dmytro.kudriavtsev.footballmanager.entities.Team;
+import dmytro.kudriavtsev.footballmanager.repos.FootballerRepository;
 import dmytro.kudriavtsev.footballmanager.repos.StatementRepository;
 import dmytro.kudriavtsev.footballmanager.repos.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TeamService {
     private final TeamRepository teamRepository;
     private final StatementRepository statementRepository;
+    private final FootballerRepository footballerRepository;
 
     @Autowired
-    public TeamService(TeamRepository teamRepository, StatementRepository statementRepository) {
+    public TeamService(TeamRepository teamRepository, StatementRepository statementRepository, FootballerRepository footballerRepository) {
         this.teamRepository = teamRepository;
         this.statementRepository = statementRepository;
+        this.footballerRepository = footballerRepository;
     }
-
 
     public List<Team> getTeams() {
         return teamRepository.findAll();
@@ -33,6 +39,23 @@ public class TeamService {
     }
 
     public Team updateTeam(Team team) {
+        List<Statement> statements = statementRepository.findAllByTeamId(team.getId());
+
+        List<Footballer> players = statements.stream().map(Statement::getFootballer).collect(Collectors.toList());
+
+        Iterator<Footballer> iterator = players.iterator();
+        while (iterator.hasNext()) {
+            Footballer next = iterator.next();
+
+            int price = next.getExperience() * 100000 / next.getAge();
+            int commission = team.getCommission() * price / 100;
+            int fullPrice = price + commission;
+
+            next.setPrice(fullPrice);
+        }
+
+        footballerRepository.saveAll(players);
+
         return teamRepository.save(team);
     }
 

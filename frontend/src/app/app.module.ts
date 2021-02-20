@@ -13,6 +13,7 @@ import { FootballerComponent } from './footballer/footballer.component';
 import { TeamInfoComponent } from './team-info/team-info.component';
 import {TeamInfoPlayersComponent} from './team-info/team-info.players.component';
 import {TeamInfoFreePlayersComponent} from './team-info/team-info.free-players.component';
+import {TeamInfoOtherPlayersComponent} from './team-info/team-info.other-players.component';
 
 const appRoutes: Routes = [
   {path: 'teams', component: TeamComponent},
@@ -27,7 +28,8 @@ const appRoutes: Routes = [
     FootballerComponent,
     TeamInfoComponent,
     TeamInfoPlayersComponent,
-    TeamInfoFreePlayersComponent
+    TeamInfoFreePlayersComponent,
+    TeamInfoOtherPlayersComponent
   ],
   imports: [
     BrowserModule,

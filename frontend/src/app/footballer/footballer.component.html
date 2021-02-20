@@ -56,10 +56,6 @@
             <input type="number" class="form-control" id="experience" ngModel name="experience" placeholder="Enter experience">
           </div>
           <div class="form-group">
-            <label for="price">Price</label>
-            <input type="number" class="form-control" id="price" ngModel name="price" placeholder="Enter price">
-          </div>
-          <div class="form-group">
             <label for="team">Example select</label>
             <select class="form-control" ngModel id="team" name="team">
               <option *ngFor="let team of teams" value="{{team?.id}}">{{team?.name}} | {{team?.country}}</option>

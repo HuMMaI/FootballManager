@@ -7,6 +7,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {FootballerService} from '../footballer.service';
 import {StatementService} from '../statement.service';
 import {Footballer} from '../footballer';
+import {Statement} from '../statement';
 
 @Component({
   selector: 'app-team-info',
@@ -19,8 +20,10 @@ export class TeamInfoComponent implements OnInit {
   public team: Team;
   public players: Footballer[];
   public freePlayers: Footballer[];
+  public statements: Statement[];
   @ViewChild('freePlayersEl') freePlayersEl: ElementRef;
   @ViewChild('teamPlayersEl') playersEl: ElementRef;
+  @ViewChild('otherPlayersEl') otherPlayersEl: ElementRef;
 
   constructor(private route: ActivatedRoute, private teamService: TeamService, private statementService: StatementService) {
   }
@@ -60,16 +63,32 @@ export class TeamInfoComponent implements OnInit {
         alert(error.message);
       }
     );
+
+    this.statementService.getOtherPlayers().subscribe(
+      (response: Statement[]) => {
+        this.statements = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
   }
 
   onChangeContent(mode: string): void {
     if (mode === 'players') {
       this.freePlayersEl.nativeElement.classList.add('hidden');
+      this.otherPlayersEl.nativeElement.classList.add('hidden');
       this.playersEl.nativeElement.classList.remove('hidden');
     }
     if (mode === 'free-players') {
+      this.otherPlayersEl.nativeElement.classList.add('hidden');
       this.playersEl.nativeElement.classList.add('hidden');
       this.freePlayersEl.nativeElement.classList.remove('hidden');
+    }
+    if (mode === 'other-players') {
+      this.playersEl.nativeElement.classList.add('hidden');
+      this.freePlayersEl.nativeElement.classList.add('hidden');
+      this.otherPlayersEl.nativeElement.classList.remove('hidden');
     }
   }
 }

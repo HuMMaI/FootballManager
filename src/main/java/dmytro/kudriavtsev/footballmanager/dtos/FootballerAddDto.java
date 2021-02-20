@@ -7,7 +7,6 @@ public class FootballerAddDto {
     private int age;
     private int team;
     private int experience;
-    private int price;
 
     public int getId() {
         return id;
@@ -55,13 +54,5 @@ public class FootballerAddDto {
 
     public void setExperience(int experience) {
         this.experience = experience;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
     }
 }
