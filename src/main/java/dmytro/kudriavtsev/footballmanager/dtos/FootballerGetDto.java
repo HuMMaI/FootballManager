@@ -1,21 +1,13 @@
 package dmytro.kudriavtsev.footballmanager.dtos;
 
-public class FootballerDto {
+public class FootballerGetDto {
     private int id;
     private String firstName;
     private String lastName;
     private int age;
-    private int team;
+    private String team;
     private int experience;
     private int price;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -41,11 +33,11 @@ public class FootballerDto {
         this.age = age;
     }
 
-    public int getTeam() {
+    public String getTeam() {
         return team;
     }
 
-    public void setTeam(int team) {
+    public void setTeam(String team) {
         this.team = team;
     }
 

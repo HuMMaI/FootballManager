@@ -4,9 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "teams")
+//@NamedEntityGraph(name = "TeamInfo.detail", attributeNodes = @NamedAttributeNode("players"))
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,18 +21,24 @@ public class Team {
 
     private String country;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "team")
-    private List<Footballer> players;
+//    @OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
+//    private Set<Footballer> players;
 
     public Team() {
     }
 
-    public Team(String name, int numberOfPlayers, String country, List<Footballer> players) {
+//    public Team(String name, int numberOfPlayers, String country, Set<Footballer> players) {
+//        this.name = name;
+//        this.numberOfPlayers = numberOfPlayers;
+//        this.country = country;
+//        this.players = players;
+//    }
+
+
+    public Team(String name, int numberOfPlayers, String country) {
         this.name = name;
         this.numberOfPlayers = numberOfPlayers;
         this.country = country;
-        this.players = players;
     }
 
     public int getId() {
@@ -57,13 +65,13 @@ public class Team {
         this.numberOfPlayers = numberOfPlayers;
     }
 
-    public List<Footballer> getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(List<Footballer> players) {
-        this.players = players;
-    }
+//    public Set<Footballer> getPlayers() {
+//        return players;
+//    }
+//
+//    public void setPlayers(Set<Footballer> players) {
+//        this.players = players;
+//    }
 
     public String getCountry() {
         return country;

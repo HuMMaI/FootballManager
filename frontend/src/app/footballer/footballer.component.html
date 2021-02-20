@@ -3,24 +3,25 @@
 </div>
 
 <div class="row">
-  <div *ngFor="let footballer of players" class="col-md-6 col-xl-3">
+  <div *ngFor="let statement of statements" class="col-md-6 col-xl-3">
     <div class="card m-b-30">
       <div class="card-body row">
         <div class="col-6">
           <!--              <a href=""><img src="{{team?.name}}" alt="" class="img-fluid rounded-circle w-60"></a>-->
         </div>
         <div class="col-6 card-title align-self-center mb-0">
-          <h5>{{footballer?.firstName}} {{footballer?.lastName}}</h5>
-          <p class="m-0">{{footballer?.age}}</p>
+          <h5>{{statement?.footballer.firstName}} {{statement?.footballer.lastName}}</h5>
+          <p class="m-0">{{statement?.footballer.age}}</p>
         </div>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item"><i class="fa fa-user float-right"></i>{{footballer?.price}}</li>
+        <li class="list-group-item"><i class="fa fa-user float-right"></i><b>Price: </b>{{statement?.footballer.price}}</li>
+        <li class="list-group-item"><i class="fa fa-user float-right"></i><b>Team: </b>{{statement?.team === null ? 'Without team' : statement?.team.name}}</li>
       </ul>
       <div class="card-body">
         <div class="float-right btn-group btn-group-sm">
-          <a (click)="onOpenFootballerModal(footballer, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
-          <a (click)="onOpenFootballerModal(footballer, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
+          <a (click)="onOpenFootballerModal(statement?.footballer, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+          <a (click)="onOpenFootballerModal(statement?.footballer, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
         </div>
       </div>
     </div>
@@ -128,7 +129,7 @@
   </div>
 </div>
 
-<div *ngIf="players?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+<div *ngIf="statements?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
   <div class="alert alert-info" role="alert">
     <h4 class="alert-heading">NO PLAYERS!</h4>
     <p>No Players were found.</p>

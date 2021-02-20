@@ -5,6 +5,8 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {NgForm} from '@angular/forms';
 import {TeamService} from '../team.service';
 import {Team} from '../team';
+import {StatementService} from '../statement.service';
+import {Statement} from '../statement';
 
 @Component({
   selector: 'app-footballer',
@@ -15,10 +17,11 @@ export class FootballerComponent implements OnInit {
   public players: Footballer[];
   public editFootballer: Footballer;
   public deleteFootballer: Footballer;
+  public currentFootballer: Footballer;
   public teams: Team[];
-  public selectedTeam: Team;
+  public statements: Statement[];
 
-  constructor(private footballerService: FootballerService, private teamService: TeamService) { }
+  constructor(private footballerService: FootballerService, private teamService: TeamService, private statementService: StatementService) { }
 
   ngOnInit(): void {
     this.getPlayers();
@@ -36,10 +39,20 @@ export class FootballerComponent implements OnInit {
   }
 
   public getPlayers(): void {
-    this.footballerService.getPlayers().subscribe(
-      (response: Footballer[]) => {
-        this.players = response;
-        console.log(this.players);
+    // this.footballerService.getPlayers().subscribe(
+    //   (response: Footballer[]) => {
+    //     this.players = response;
+    //     console.log(this.players);
+    //   },
+    //   (error: HttpErrorResponse) => {
+    //     alert(error.message);
+    //   }
+    // );
+
+    this.statementService.getStatements().subscribe(
+      (response: Statement[]) => {
+        this.statements = response;
+        console.log(this.statements);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -48,6 +61,8 @@ export class FootballerComponent implements OnInit {
   }
 
   public onAddFootballer(addForm: NgForm): void {
+    console.log(addForm.value);
+
     this.footballerService.addFootballer(addForm.value).subscribe(
       (response: Footballer) => {
         console.log(response);

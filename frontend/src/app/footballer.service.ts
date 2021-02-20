@@ -3,6 +3,7 @@ import {environment} from '../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Footballer} from './footballer';
+import {FootballerDto} from './footballer.dto';
 
 @Injectable({providedIn: 'root'})
 export class FootballerService {
@@ -15,7 +16,7 @@ export class FootballerService {
     return this.http.get<Footballer[]>(`${this.apiServerUrl}/footballer/api/`);
   }
 
-  public addFootballer(footballer: Footballer): Observable<Footballer> {
+  public addFootballer(footballer: FootballerDto): Observable<Footballer> {
     return this.http.post<Footballer>(`${this.apiServerUrl}/footballer/api/add`, footballer);
   }
 

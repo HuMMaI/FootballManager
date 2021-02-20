@@ -1,6 +1,7 @@
 package dmytro.kudriavtsev.footballmanager.controllers;
 
 import dmytro.kudriavtsev.footballmanager.dtos.TeamDto;
+import dmytro.kudriavtsev.footballmanager.entities.Footballer;
 import dmytro.kudriavtsev.footballmanager.entities.Team;
 import dmytro.kudriavtsev.footballmanager.services.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
