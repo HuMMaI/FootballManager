@@ -1,5 +1,6 @@
 package dmytro.kudriavtsev.footballmanager.services;
 
+import dmytro.kudriavtsev.footballmanager.dtos.TeamAddDto;
 import dmytro.kudriavtsev.footballmanager.entities.Footballer;
 import dmytro.kudriavtsev.footballmanager.entities.Statement;
 import dmytro.kudriavtsev.footballmanager.entities.Team;
@@ -30,7 +31,15 @@ public class TeamService {
         return teamRepository.findAll();
     }
 
-    public Team addNewTeam(Team team) {
+    public Team addNewTeam(TeamAddDto teamAddDto) {
+        Team team = new Team();
+
+        team.setName(teamAddDto.getName());
+        team.setCountry(teamAddDto.getCountry());
+        team.setNumberOfPlayers(teamAddDto.getNumberOfPlayers());
+        team.setBudget(teamAddDto.getBudget());
+        team.setCommission(teamAddDto.getCommission());
+
         return teamRepository.save(team);
     }
 

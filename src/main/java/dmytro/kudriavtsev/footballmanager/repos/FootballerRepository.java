@@ -10,9 +10,4 @@ import java.util.List;
 
 @Repository
 public interface FootballerRepository extends JpaRepository<Footballer, Integer> {
-//    @Query("select f.id, f.firstName, f.lastName, f.age, f.experience, f.price, t.name from Footballer f " +
-//            "inner join TeamFootballerMapping tf " +
-//            "inner join Team t " +
-//            "where tf.footballerId = f.id and t.id = tf.teamId")
-//    List<FootballerGetDto> getAllPlayers();
 }

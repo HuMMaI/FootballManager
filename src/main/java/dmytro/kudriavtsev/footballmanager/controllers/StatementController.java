@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -37,7 +38,7 @@ public class StatementController {
     }
 
     @PutMapping("/players/add")
-    public void addFootballer(@RequestBody FootballerAddToTeamDto footballerAddToTeamDto) {
+    public void addFootballer(@Valid @RequestBody FootballerAddToTeamDto footballerAddToTeamDto) {
         statementService.addFootballer(footballerAddToTeamDto);
     }
 

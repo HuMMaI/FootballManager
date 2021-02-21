@@ -1,23 +1,36 @@
 package dmytro.kudriavtsev.footballmanager.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "teams")
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
     private int id;
 
+    @NotNull
     private String name;
 
     @Column(name = "number_of_players")
+    @NotNull
+    @Min(0)
     private int numberOfPlayers;
 
+    @NotNull
     private String country;
 
+    @NotNull
+    @Min(0)
+    @Max(10)
     private int commission;
 
+    @NotNull
+    @Min(0)
     private int budget;
 
     public Team() {

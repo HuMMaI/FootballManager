@@ -1,14 +1,15 @@
 package dmytro.kudriavtsev.footballmanager.controllers;
 
-import dmytro.kudriavtsev.footballmanager.dtos.TeamDto;
-import dmytro.kudriavtsev.footballmanager.entities.Footballer;
+import dmytro.kudriavtsev.footballmanager.dtos.TeamAddDto;
 import dmytro.kudriavtsev.footballmanager.entities.Team;
 import dmytro.kudriavtsev.footballmanager.services.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -24,13 +25,17 @@ public class TeamController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Team> addNewTeam(@RequestBody Team team) {
-        Team newTeam = teamService.addNewTeam(team);
+    public ResponseEntity<Team> addNewTeam(@Valid @RequestBody TeamAddDto teamAddDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        Team newTeam = teamService.addNewTeam(teamAddDto);
         return new ResponseEntity<>(newTeam, HttpStatus.OK);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Team> updateTeam(@RequestBody Team team) {
+    public ResponseEntity<Team> updateTeam(@Valid @RequestBody Team team) {
         Team updateTeam = teamService.updateTeam(team);
         return new ResponseEntity<>(updateTeam, HttpStatus.OK);
     }

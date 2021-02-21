@@ -1,20 +1,26 @@
 package dmytro.kudriavtsev.footballmanager.dtos;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 public class FootballerAddDto {
-    private int id;
+    @NotNull
     private String firstName;
+
+    @NotNull
     private String lastName;
+
+    @NotNull
+    @Min(1)
+    @Max(100)
     private int age;
+
     private int team;
+
+    @NotNull
+    @Min(0)
     private int experience;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getFirstName() {
         return firstName;
