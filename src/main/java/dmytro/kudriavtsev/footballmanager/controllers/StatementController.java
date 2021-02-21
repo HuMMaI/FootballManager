@@ -53,4 +53,16 @@ public class StatementController {
         List<Statement> statements = statementService.getOtherPlayers(teamId);
         return new ResponseEntity<>(statements, HttpStatus.OK);
     }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<Statement> getStatement(@PathVariable("id") int statementId) {
+        Statement statement = statementService.getStatement(statementId);
+        return new ResponseEntity<>(statement, HttpStatus.OK);
+    }
+
+    @GetMapping("/footballer/{id}")
+    public ResponseEntity<Statement> getStatementByFootballerId(@PathVariable("id") int footballerId) {
+        Statement statement = statementService.getStatementByFootballerId(footballerId);
+        return new ResponseEntity<>(statement, HttpStatus.OK);
+    }
 }

@@ -71,4 +71,12 @@ public class StatementService {
     public List<Statement> getOtherPlayers(int teamId) {
         return statementRepository.findAllOtherPlayers(teamId);
     }
+
+    public Statement getStatement(int statementId) {
+        return statementRepository.findById(statementId).get();
+    }
+
+    public Statement getStatementByFootballerId(int footballerId) {
+        return statementRepository.findByFootballerId(footballerId);
+    }
 }

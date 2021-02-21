@@ -8,6 +8,7 @@ import {FootballerService} from '../footballer.service';
 import {StatementService} from '../statement.service';
 import {Footballer} from '../footballer';
 import {Statement} from '../statement';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-team-info',
@@ -16,6 +17,7 @@ import {Statement} from '../statement';
 })
 export class TeamInfoComponent implements OnInit {
 
+  public teamPictureUrl = environment.teamPictureUrl;
   public teamId: number;
   public team: Team;
   public players: Footballer[];

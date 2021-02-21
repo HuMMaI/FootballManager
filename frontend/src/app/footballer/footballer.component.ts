@@ -7,6 +7,7 @@ import {TeamService} from '../team.service';
 import {Team} from '../team';
 import {StatementService} from '../statement.service';
 import {Statement} from '../statement';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-footballer',
@@ -14,6 +15,7 @@ import {Statement} from '../statement';
   styleUrls: ['./footballer.component.css']
 })
 export class FootballerComponent implements OnInit {
+  public footballerPictureUrl = environment.footballerPictureUrl;
   public players: Footballer[];
   public editFootballer: Footballer;
   public deleteFootballer: Footballer;

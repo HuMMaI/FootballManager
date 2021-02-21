@@ -32,4 +32,12 @@ export class StatementService {
   public getOtherPlayers(teamId: number): Observable<Statement[]> {
     return this.http.get<Statement[]>(`${this.apiServerUrl}/statement/api/players/other/${teamId}`);
   }
+
+  public getStatementById(statementId: number): Observable<Statement> {
+    return this.http.get<Statement>(`${this.apiServerUrl}/statement/api/get/${statementId}`);
+  }
+
+  public getStatementByFootballerId(footballerId: number): Observable<Statement> {
+    return this.http.get<Statement>(`${this.apiServerUrl}/statement/api/footballer/${footballerId}`);
+  }
 }

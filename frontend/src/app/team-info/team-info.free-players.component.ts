@@ -1,7 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Footballer} from '../footballer';
 import {StatementService} from '../statement.service';
-import {FootballerAddDto} from '../footballer.add.dto';
 import {Team} from '../team';
 import {HttpErrorResponse} from '@angular/common/http';
 

@@ -14,11 +14,13 @@ import { TeamInfoComponent } from './team-info/team-info.component';
 import {TeamInfoPlayersComponent} from './team-info/team-info.players.component';
 import {TeamInfoFreePlayersComponent} from './team-info/team-info.free-players.component';
 import {TeamInfoOtherPlayersComponent} from './team-info/team-info.other-players.component';
+import { FootballerInfoComponent } from './footballer-info/footballer-info.component';
 
 const appRoutes: Routes = [
   {path: 'teams', component: TeamComponent},
   {path: 'players', component: FootballerComponent},
-  {path: 'team', component: TeamInfoComponent}
+  {path: 'team', component: TeamInfoComponent},
+  {path: 'footballer', component: FootballerInfoComponent}
 ];
 
 @NgModule({
@@ -29,7 +31,8 @@ const appRoutes: Routes = [
     TeamInfoComponent,
     TeamInfoPlayersComponent,
     TeamInfoFreePlayersComponent,
-    TeamInfoOtherPlayersComponent
+    TeamInfoOtherPlayersComponent,
+    FootballerInfoComponent
   ],
     imports: [
         BrowserModule,

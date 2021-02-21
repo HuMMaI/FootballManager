@@ -5,11 +5,14 @@
   <div class="col-md-3">
     <label>Last name</label>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-2">
     <label>Age</label>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-2">
     <label>Experience</label>
+  </div>
+  <div class="col-md-2">
+    <label>Info</label>
   </div>
 </div>
 <div *ngFor="let footballer of players" class="row">
@@ -19,10 +22,13 @@
   <div class="col-md-3">
     <p>{{footballer?.lastName}}</p>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-2">
     <p>{{footballer?.age}}</p>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-2">
     <p>{{footballer?.experience}}</p>
+  </div>
+  <div class="col-md-2">
+    <a (click)="onShowFootballer(footballer?.id)" class="btn btn-outline-info tooltips">Show</a>
   </div>
 </div>
