@@ -39,11 +39,16 @@ public class StatementService {
         return players;
     }
 
-    public void addFootballer(FootballerAddToTeamDto footballerAddToTeamDto) {
+    public boolean addFootballer(FootballerAddToTeamDto footballerAddToTeamDto) {
         Statement statement = statementRepository.findByFootballerId(footballerAddToTeamDto.getFootballer().getId());
 
         Team team = footballerAddToTeamDto.getTeam();
         team.setBudget(team.getBudget() - footballerAddToTeamDto.getFootballer().getPrice());
+
+        if (team.getBudget() < 0) {
+            return false;
+        }
+
         int numberOfPlayers = team.getNumberOfPlayers();
         team.setNumberOfPlayers(++numberOfPlayers);
         teamRepository.save(team);
@@ -59,6 +64,8 @@ public class StatementService {
         statement.setTeam(footballerAddToTeamDto.getTeam());
 
         statementRepository.save(statement);
+
+        return true;
     }
 
     public List<Statement> getOtherPlayers(int teamId) {

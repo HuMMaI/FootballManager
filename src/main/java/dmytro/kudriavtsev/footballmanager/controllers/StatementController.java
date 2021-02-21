@@ -38,8 +38,14 @@ public class StatementController {
     }
 
     @PutMapping("/players/add")
-    public void addFootballer(@Valid @RequestBody FootballerAddToTeamDto footballerAddToTeamDto) {
-        statementService.addFootballer(footballerAddToTeamDto);
+    public ResponseEntity<HttpStatus> addFootballer(@Valid @RequestBody FootballerAddToTeamDto footballerAddToTeamDto) {
+        boolean result = statementService.addFootballer(footballerAddToTeamDto);
+
+        if (!result) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/players/other/{id}")
