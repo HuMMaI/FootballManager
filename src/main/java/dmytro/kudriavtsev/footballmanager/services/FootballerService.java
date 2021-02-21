@@ -47,10 +47,14 @@ public class FootballerService {
         Statement statement = new Statement();
 
         if (teamMaybe.isPresent()) {
-            int commission = teamMaybe.get().getCommission() * price / 100;
+            Team team = teamMaybe.get();
+            int commission = team.getCommission() * price / 100;
             int fullPrice = price + commission;
             footballer.setPrice(fullPrice);
-            statement.setTeam(teamMaybe.get());
+            int numberOfPlayers = team.getNumberOfPlayers();
+            team.setNumberOfPlayers(++numberOfPlayers);
+            teamRepository.save(team);
+            statement.setTeam(team);
         } else {
             footballer.setPrice(price);
             statement.setTeam(null);

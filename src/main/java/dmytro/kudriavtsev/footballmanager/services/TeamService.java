@@ -60,10 +60,15 @@ public class TeamService {
     }
 
     public void deleteTeam(int id) {
-        int allByTeamId = statementRepository.countByTeamId(id);
+//        int allByTeamId = statementRepository.countByTeamId(id);
+        List<Statement> allByTeamId = statementRepository.findAllByTeamId(id);
 
-        if (allByTeamId != 0) {
-            statementRepository.deleteByTeamId(id);
+        if (!allByTeamId.isEmpty()) {
+            for (Statement statement : allByTeamId) {
+                statement.setTeam(null);
+            }
+
+            statementRepository.saveAll(allByTeamId);
         }
 
         teamRepository.deleteById(id);
