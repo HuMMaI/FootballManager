@@ -15,7 +15,7 @@
         </div>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item"><i class="fa fa-user float-right"></i>{{team?.numberOfPlayers}}</li>
+        <li class="list-group-item"><b>Number of players: </b> {{team?.numberOfPlayers}}</li>
       </ul>
       <ul class="list-group list-group-flush">
         <li class="list-group-item"><b>Budget: </b> {{team?.budget}}</li>
@@ -49,10 +49,6 @@
             <input type="text" class="form-control" id="name" ngModel name="name" aria-describedby="emailHelp" placeholder="Enter team name">
           </div>
           <div class="form-group">
-            <label for="numberOfPlayers">Number of players</label>
-            <input type="number" class="form-control" id="numberOfPlayers" ngModel name="numberOfPlayers" placeholder="Enter number of players">
-          </div>
-          <div class="form-group">
             <label for="country">Country</label>
             <input type="text" class="form-control" id="country" ngModel name="country" placeholder="Enter country">
           </div>
@@ -64,6 +60,7 @@
             <label for="commission">Commission</label>
             <input type="number" class="form-control" id="commission" ngModel name="commission" placeholder="Enter commission">
           </div>
+          <input type="hidden" ngModel name="numberOfPlayers" value="0">
           <button type="button" id="add-team-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">Add team</button>
         </form>
@@ -88,10 +85,6 @@
             <input type="text" class="form-control" id="name" ngModel="{{editTeam?.name}}" name="name" aria-describedby="emailHelp" placeholder="Enter team name">
           </div>
           <div class="form-group">
-            <label for="numberOfPlayers">Number of players</label>
-            <input type="number" class="form-control" id="numberOfPlayers" ngModel="{{editTeam?.numberOfPlayers}}" name="numberOfPlayers" placeholder="Enter number of players">
-          </div>
-          <div class="form-group">
             <label for="country">Country</label>
             <input type="text" class="form-control" id="country" ngModel="{{editTeam?.country}}" name="country" placeholder="Enter country">
           </div>
@@ -103,6 +96,7 @@
             <label for="country">Commission</label>
             <input type="number" class="form-control" id="commission" ngModel="{{editTeam?.commission}}" name="commission" placeholder="Enter commission">
           </div>
+          <input type="hidden" ngModel="{{editTeam?.numberOfPlayers}}" name="numberOfPlayers">
           <input type="hidden" ngModel="{{editTeam?.id}}" name="id">
           <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
           <button (click)="onUpdateTeam(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>

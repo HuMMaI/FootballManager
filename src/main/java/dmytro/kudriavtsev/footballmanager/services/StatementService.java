@@ -44,7 +44,17 @@ public class StatementService {
 
         Team team = footballerAddToTeamDto.getTeam();
         team.setBudget(team.getBudget() - footballerAddToTeamDto.getFootballer().getPrice());
+        int numberOfPlayers = team.getNumberOfPlayers();
+        team.setNumberOfPlayers(++numberOfPlayers);
         teamRepository.save(team);
+
+        if (statement.getTeam() != null) {
+            Team oldTeam = statement.getTeam();
+            oldTeam.setBudget(oldTeam.getBudget() + footballerAddToTeamDto.getFootballer().getPrice());
+            int oldTeamNumberOfPlayers = oldTeam.getNumberOfPlayers();
+            oldTeam.setNumberOfPlayers(--oldTeamNumberOfPlayers);
+            teamRepository.save(oldTeam);
+        }
 
         statement.setTeam(footballerAddToTeamDto.getTeam());
 
