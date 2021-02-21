@@ -38,22 +38,34 @@
         </button>
       </div>
       <div class="modal-body">
-        <form #addFootballerForm="ngForm" (ngSubmit)="onAddFootballer(addFootballerForm)">
+        <form #addFootballerForm="ngForm" (ngSubmit)="onAddFootballer(addFootballerForm)" [formGroup]="footballerForm">
           <div class="form-group">
             <label for="firstName">First name</label>
-            <input type="text" class="form-control" id="firstName" ngModel name="firstName" aria-describedby="firstNameHelp" placeholder="Enter first name">
+            <input type="text" class="form-control" id="firstName" ngModel name="firstName" aria-describedby="firstNameHelp" placeholder="Enter first name" formControlName="firstName">
+            <div *ngIf="footballerForm.get('firstName').invalid && footballerForm.get('firstName').touched" class="alert alert-danger">
+              Please, enter first name!!!
+            </div>
           </div>
           <div class="form-group">
             <label for="lastName">Last name</label>
-            <input type="text" class="form-control" id="lastName" ngModel name="lastName" aria-describedby="lastNameHelp" placeholder="Enter last name">
+            <input type="text" class="form-control" id="lastName" ngModel name="lastName" aria-describedby="lastNameHelp" placeholder="Enter last name" formControlName="lastName">
+            <div *ngIf="footballerForm.get('lastName').invalid && footballerForm.get('lastName').touched" class="alert alert-danger">
+              Please, enter last name!!!
+            </div>
           </div>
           <div class="form-group">
             <label for="age">Age</label>
-            <input type="number" class="form-control" id="age" ngModel name="age" placeholder="Enter age">
+            <input type="number" class="form-control" id="age" ngModel name="age" placeholder="Enter age (1-100)" formControlName="age" min="1" max="100">
+            <div *ngIf="footballerForm.get('age').invalid && footballerForm.get('age').touched" class="alert alert-danger">
+              Please, enter valid age!!!
+            </div>
           </div>
           <div class="form-group">
             <label for="experience">Experience</label>
-            <input type="number" class="form-control" id="experience" ngModel name="experience" placeholder="Enter experience">
+            <input type="number" class="form-control" id="experience" ngModel name="experience" placeholder="Enter experience" formControlName="experience" min="0">
+            <div *ngIf="footballerForm.get('experience').invalid && footballerForm.get('experience').touched" class="alert alert-danger">
+              Please, enter valid experience!!!
+            </div>
           </div>
           <div class="form-group">
             <label for="team">Example select</label>
@@ -62,7 +74,7 @@
             </select>
           </div>
           <button type="button" id="add-employee-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button [disabled]="addFootballerForm.invalid" type="submit" class="btn btn-primary">Add team</button>
+          <button [disabled]="addFootballerForm.invalid" type="submit" class="btn btn-primary">Add footballer</button>
         </form>
       </div>
     </div>
@@ -115,7 +127,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>Are you sure you want to delete team {{deleteFootballer?.firstName}} {{deleteFootballer?.lastName}}?</p>
+        <p>Are you sure you want to delete footballer {{deleteFootballer?.firstName}} {{deleteFootballer?.lastName}}?</p>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
           <button (click)="onDeleteFootBaller(deleteFootballer?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>

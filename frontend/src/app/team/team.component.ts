@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Team} from '../team';
 import {TeamService} from '../team.service';
 import {HttpErrorResponse} from '@angular/common/http';
-import {NgForm} from '@angular/forms';
-import {Observable} from 'rxjs';
+import {FormGroupDirective, NgForm} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-team',
@@ -14,6 +14,13 @@ export class TeamComponent implements OnInit {
   public teams: Team[];
   public editTeam: Team;
   public deleteTeam: Team;
+
+  addTeamForm = new FormGroup({
+    name: new FormControl('', Validators.required),
+    country: new FormControl('', Validators.required),
+    budget: new FormControl('', [Validators.required, Validators.min(0)]),
+    commission: new FormControl('', [Validators.required, Validators.min(0), Validators.max(10)])
+  });
 
   constructor(private teamService: TeamService) { }
 
@@ -33,7 +40,7 @@ export class TeamComponent implements OnInit {
     );
   }
 
-  public onAddTeam(addForm: NgForm): void {
+  public onAddTeam(addForm: FormGroupDirective): void {
     this.teamService.addTeam(addForm.value).subscribe(
       (response: Team) => {
         console.log(response);

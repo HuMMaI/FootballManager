@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TeamService} from './team.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TeamComponent } from './team/team.component';
@@ -31,11 +31,11 @@ const appRoutes: Routes = [
     TeamInfoFreePlayersComponent,
     TeamInfoOtherPlayersComponent
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule, FormsModule, NgbModule,
-    RouterModule.forRoot(appRoutes)
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule, FormsModule, NgbModule,
+        RouterModule.forRoot(appRoutes), ReactiveFormsModule
+    ],
   providers: [TeamService],
   bootstrap: [AppComponent]
 })

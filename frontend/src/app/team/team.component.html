@@ -43,22 +43,34 @@
         </button>
       </div>
       <div class="modal-body">
-        <form #addForm="ngForm" (ngSubmit)="onAddTeam(addForm)">
+        <form #addForm="ngForm" (ngSubmit)="onAddTeam(addForm)" [formGroup]="addTeamForm">
           <div class="form-group">
             <label for="name">Team name</label>
-            <input type="text" class="form-control" id="name" ngModel name="name" aria-describedby="emailHelp" placeholder="Enter team name">
+            <input type="text" class="form-control" id="name" ngModel name="name" aria-describedby="emailHelp" placeholder="Enter team name" formControlName="name">
+            <div *ngIf="addTeamForm.get('name').invalid && addTeamForm.get('name').touched" class="alert alert-danger">
+              Please, enter name!!!
+            </div>
           </div>
           <div class="form-group">
             <label for="country">Country</label>
-            <input type="text" class="form-control" id="country" ngModel name="country" placeholder="Enter country">
+            <input type="text" class="form-control" id="country" ngModel name="country" placeholder="Enter country" formControlName="country">
+            <div *ngIf="addTeamForm.get('country').invalid && addTeamForm.get('country').touched" class="alert alert-danger">
+              Please, enter country!!!
+            </div>
           </div>
           <div class="form-group">
             <label for="budget">Budget</label>
-            <input type="number" class="form-control" id="budget" ngModel name="budget" placeholder="Enter budget">
+            <input type="number" class="form-control" id="budget" ngModel name="budget" placeholder="Enter budget" formControlName="budget" min="0">
+            <div *ngIf="addTeamForm.get('budget').invalid && addTeamForm.get('budget').touched" class="alert alert-danger">
+              Please, enter valid budget!!!
+            </div>
           </div>
           <div class="form-group">
             <label for="commission">Commission</label>
-            <input type="number" class="form-control" id="commission" ngModel name="commission" placeholder="Enter commission">
+            <input type="number" class="form-control" id="commission" ngModel name="commission" placeholder="Enter commission in percent (0-10%)" formControlName="commission" min="0" max="10">
+            <div *ngIf="addTeamForm.get('commission').invalid && addTeamForm.get('commission').touched" class="alert alert-danger">
+              Please, enter valid commission!!!
+            </div>
           </div>
           <input type="hidden" ngModel name="numberOfPlayers" value="0">
           <button type="button" id="add-team-form" class="btn btn-secondary" data-dismiss="modal">Close</button>

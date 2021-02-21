@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Footballer} from '../footballer';
 import {FootballerService} from '../footballer.service';
 import {HttpErrorResponse} from '@angular/common/http';
-import {NgForm} from '@angular/forms';
+import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {TeamService} from '../team.service';
 import {Team} from '../team';
 import {StatementService} from '../statement.service';
@@ -20,6 +20,13 @@ export class FootballerComponent implements OnInit {
   public currentFootballer: Footballer;
   public teams: Team[];
   public statements: Statement[];
+
+  footballerForm = new FormGroup({
+    firstName: new FormControl('', Validators.required),
+    lastName: new FormControl('', Validators.required),
+    age: new FormControl('', [Validators.required, Validators.min(1), Validators.max(100)]),
+    experience: new FormControl('', [Validators.required, Validators.min(0)])
+  });
 
   constructor(private footballerService: FootballerService, private teamService: TeamService, private statementService: StatementService) { }
 
@@ -39,16 +46,6 @@ export class FootballerComponent implements OnInit {
   }
 
   public getPlayers(): void {
-    // this.footballerService.getPlayers().subscribe(
-    //   (response: Footballer[]) => {
-    //     this.players = response;
-    //     console.log(this.players);
-    //   },
-    //   (error: HttpErrorResponse) => {
-    //     alert(error.message);
-    //   }
-    // );
-
     this.statementService.getStatements().subscribe(
       (response: Statement[]) => {
         this.statements = response;
@@ -60,7 +57,7 @@ export class FootballerComponent implements OnInit {
     );
   }
 
-  public onAddFootballer(addForm: NgForm): void {
+  public onAddFootballer(addForm: FormGroupDirective): void {
     console.log(addForm.value);
 
     this.footballerService.addFootballer(addForm.value).subscribe(
