@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Team} from '../team';
 import {TeamService} from '../team.service';
 import {HttpErrorResponse} from '@angular/common/http';
-import {FormGroupDirective, NgForm} from '@angular/forms';
+import {FormGroupDirective} from '@angular/forms';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {environment} from '../../environments/environment';
 

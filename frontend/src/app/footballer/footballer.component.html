@@ -11,7 +11,7 @@
         </div>
         <div class="col-6 card-title align-self-center mb-0">
           <h5>{{statement?.footballer.firstName}} {{statement?.footballer.lastName}}</h5>
-          <p class="m-0">{{statement?.footballer.age}}</p>
+          <p class="m-0"><b>Age: </b> {{statement?.footballer.age}}</p>
         </div>
       </div>
       <ul class="list-group list-group-flush">
@@ -65,14 +65,14 @@
           </div>
           <div class="form-group">
             <label for="experience">Experience</label>
-            <input type="number" class="form-control" id="experience" ngModel name="experience" placeholder="Enter experience" formControlName="experience" min="0">
+            <input type="number" class="form-control" id="experience" ngModel name="experience" placeholder="Enter experience" formControlName="experience" min="1">
             <div *ngIf="footballerForm.get('experience').invalid && footballerForm.get('experience').touched" class="alert alert-danger">
               Please, enter valid experience!!!
             </div>
           </div>
           <div class="form-group">
             <label for="team">Example select</label>
-            <select class="form-control" ngModel id="team" name="team">
+            <select class="form-control" ngModel id="team" name="team" formControlName="team">
               <option *ngFor="let team of teams" value="{{team?.id}}">{{team?.name}} | {{team?.country}}</option>
             </select>
           </div>
@@ -108,9 +108,10 @@
             <input type="number" class="form-control" id="age" ngModel="{{editFootballer?.age}}" name="age" placeholder="Enter age">
           </div>
           <div class="form-group">
-            <label for="price">Price</label>
-            <input type="number" class="form-control" id="price" ngModel="{{editFootballer?.price}}" name="price" placeholder="Enter price">
+            <label for="age">Experience</label>
+            <input type="number" class="form-control" id="experience" ngModel="{{editFootballer?.experience}}" name="experience" placeholder="Enter experience">
           </div>
+          <input type="hidden" ngModel="{{editFootballer?.price}}" name="price">
           <input type="hidden" ngModel="{{editFootballer?.id}}" name="id">
           <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
           <button (click)="onUpdateFootballer(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>

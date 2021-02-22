@@ -4,6 +4,7 @@ import dmytro.kudriavtsev.footballmanager.dtos.FootballerAddToTeamDto;
 import dmytro.kudriavtsev.footballmanager.entities.Footballer;
 import dmytro.kudriavtsev.footballmanager.entities.Statement;
 import dmytro.kudriavtsev.footballmanager.entities.Team;
+import dmytro.kudriavtsev.footballmanager.repos.FootballerRepository;
 import dmytro.kudriavtsev.footballmanager.repos.StatementRepository;
 import dmytro.kudriavtsev.footballmanager.repos.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +17,13 @@ import java.util.stream.Collectors;
 public class StatementService {
     private final StatementRepository statementRepository;
     private final TeamRepository teamRepository;
+    private final FootballerRepository footballerRepository;
 
     @Autowired
-    public StatementService(StatementRepository statementRepository, TeamRepository teamRepository) {
+    public StatementService(StatementRepository statementRepository, TeamRepository teamRepository, FootballerRepository footballerRepository) {
         this.statementRepository = statementRepository;
         this.teamRepository = teamRepository;
+        this.footballerRepository = footballerRepository;
     }
 
     public List<Statement> getStatements() {
@@ -44,6 +47,14 @@ public class StatementService {
 
         Team team = footballerAddToTeamDto.getTeam();
         team.setBudget(team.getBudget() - footballerAddToTeamDto.getFootballer().getPrice());
+
+        Footballer footballer = statement.getFootballer();
+
+        int price = footballer.getExperience() * 100000 / footballer.getAge();
+        int commission = team.getCommission() * price / 100;
+        int fullPrice = price + commission;
+        footballer.setPrice(fullPrice);
+        footballerRepository.save(footballer);
 
         if (team.getBudget() < 0) {
             return false;

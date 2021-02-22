@@ -1,10 +1,8 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {switchMap} from 'rxjs/operators';
 import {Team} from '../team';
 import {TeamService} from '../team.service';
 import {HttpErrorResponse} from '@angular/common/http';
-import {FootballerService} from '../footballer.service';
 import {StatementService} from '../statement.service';
 import {Footballer} from '../footballer';
 import {Statement} from '../statement';

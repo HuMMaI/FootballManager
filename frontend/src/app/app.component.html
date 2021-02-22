@@ -6,10 +6,7 @@
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-<!--        <a class="nav-link" (click)="onOpenTeamModal(null, 'add')">Add Team <span class="sr-only">(current)</span></a>-->
-      </li>
-      <li class="nav-item">
-        <a class="nav-link">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/teams">Teams <span class="sr-only"></span></a>
@@ -18,15 +15,9 @@
         <a class="nav-link" href="/players">Players <span class="sr-only"></span></a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-<!--      <input type="search" (ngModelChange)="searchEmployees(key.value)" #key="ngModel" ngModel-->
-<!--             name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search employees..." required>-->
-    </form>
   </div>
 </nav>
 
 <div class="container" id="main-container">
-<!--  <div class="row">-->
-    <router-outlet></router-outlet>
-<!--  </div>-->
+  <router-outlet></router-outlet>
 </div>

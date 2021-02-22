@@ -27,8 +27,6 @@ public class FootballerService {
     }
 
     public List<Footballer> getPlayers() {
-//        List<FootballerGetDto> players = footballerRepository.getAllPlayers();
-//        return players;
         return footballerRepository.findAll();
     }
 
@@ -70,10 +68,35 @@ public class FootballerService {
     }
 
     public Footballer updateFootballer(Footballer footballer) {
+        Footballer oldFootballer = footballerRepository.findById(footballer.getId()).get();
+        Statement statement = statementRepository.findByFootballerId(footballer.getId());
+
+        if (oldFootballer.getAge() != footballer.getAge() || oldFootballer.getExperience() != footballer.getExperience()) {
+            int price = footballer.getExperience() * 100000 / footballer.getAge();
+
+            Team team = statement.getTeam();
+            if (team != null) {
+                int commission = team.getCommission() * price / 100;
+                int fullPrice = price + commission;
+                footballer.setPrice(fullPrice);
+            } else {
+                footballer.setPrice(price);
+            }
+        }
+
         return footballerRepository.save(footballer);
     }
 
     public void deleteFootballer(int id) {
+        Statement statement = statementRepository.findByFootballerId(id);
+
+        if (statement.getTeam() != null) {
+            Team team = statement.getTeam();
+            int numberOfPlayers = team.getNumberOfPlayers();
+            team.setNumberOfPlayers(--numberOfPlayers);
+            teamRepository.save(team);
+        }
+
         statementRepository.deleteByFootballerId(id);
         footballerRepository.deleteById(id);
     }

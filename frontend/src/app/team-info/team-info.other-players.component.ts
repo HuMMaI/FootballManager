@@ -23,7 +23,11 @@ export class TeamInfoOtherPlayersComponent {
         window.location.reload();
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        if (error.status === 400) {
+          alert('Not enough budget');
+        } else {
+          alert(error.message);
+        }
       }
     );
   }

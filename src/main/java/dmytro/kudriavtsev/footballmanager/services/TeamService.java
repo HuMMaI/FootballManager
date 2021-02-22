@@ -69,7 +69,6 @@ public class TeamService {
     }
 
     public void deleteTeam(int id) {
-//        int allByTeamId = statementRepository.countByTeamId(id);
         List<Statement> allByTeamId = statementRepository.findAllByTeamId(id);
 
         if (!allByTeamId.isEmpty()) {
@@ -77,6 +76,13 @@ public class TeamService {
                 statement.setTeam(null);
             }
 
+            List<Footballer> players = allByTeamId.stream().map(Statement::getFootballer).collect(Collectors.toList());
+            players.stream().forEach(footballer -> {
+                int price = footballer.getExperience() * 100000 / footballer.getAge();
+                footballer.setPrice(price);
+            });
+
+            footballerRepository.saveAll(players);
             statementRepository.saveAll(allByTeamId);
         }
 

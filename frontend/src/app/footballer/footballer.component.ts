@@ -27,10 +27,12 @@ export class FootballerComponent implements OnInit {
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
     age: new FormControl('', [Validators.required, Validators.min(1), Validators.max(100)]),
-    experience: new FormControl('', [Validators.required, Validators.min(0)])
+    experience: new FormControl('', [Validators.required, Validators.min(1)]),
+    team: new FormControl('')
   });
 
-  constructor(private footballerService: FootballerService, private teamService: TeamService, private statementService: StatementService) { }
+  constructor(private footballerService: FootballerService, private teamService: TeamService, private statementService: StatementService) {
+  }
 
   ngOnInit(): void {
     this.getPlayers();
@@ -60,8 +62,6 @@ export class FootballerComponent implements OnInit {
   }
 
   public onAddFootballer(addForm: FormGroupDirective): void {
-    console.log(addForm.value);
-
     this.footballerService.addFootballer(addForm.value).subscribe(
       (response: Footballer) => {
         console.log(response);

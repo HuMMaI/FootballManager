@@ -3,7 +3,6 @@ package dmytro.kudriavtsev.footballmanager.controllers;
 import dmytro.kudriavtsev.footballmanager.dtos.FootballerAddToTeamDto;
 import dmytro.kudriavtsev.footballmanager.entities.Footballer;
 import dmytro.kudriavtsev.footballmanager.entities.Statement;
-import dmytro.kudriavtsev.footballmanager.entities.Team;
 import dmytro.kudriavtsev.footballmanager.services.StatementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
