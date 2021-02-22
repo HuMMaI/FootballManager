@@ -1,0 +1,53 @@
+<div class="container emp-team">
+  <form method="post">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="team-img">
+          <img src="{{teamPictureUrl}}" alt=""/>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="team-head">
+          <h5>
+            {{team?.name}}
+          </h5>
+          <h6>
+            {{team?.country}}
+          </h6>
+          <p class="team-rating">Number of players : <span>{{team?.numberOfPlayers}}</span></p>
+          <p class="team-rating">Budget : <span>{{team?.budget}}</span></p>
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a (click)="onChangeContent('players')" class="nav-link active" id="players-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Players</a>
+            </li>
+            <li class="nav-item">
+              <a (click)="onChangeContent('free-players')" class="nav-link" id="free-players-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Free players</a>
+            </li>
+            <li class="nav-item">
+              <a (click)="onChangeContent('other-players')" class="nav-link" id="other-players-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Other players</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-8">
+        <div class="tab-content team-tab" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div id="team-players" #teamPlayersEl>
+              <app-team-info-players [players]="players"></app-team-info-players>
+            </div>
+            <div id="free-players" class="hidden" #freePlayersEl>
+              <app-team-info-free-players [players]="freePlayers" [team]="team"></app-team-info-free-players>
+            </div>
+            <div id="other-players" class="hidden" #otherPlayersEl>
+              <app-team-info-other-players [statements]="statements" [team]="team"></app-team-info-other-players>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

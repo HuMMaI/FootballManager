@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiBaseUrl: 'http://localhost:8081',
+  teamPictureUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Soccer_ball.svg/1200px-Soccer_ball.svg.png',
+  footballerPictureUrl: 'https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png'
 };
 
 /*

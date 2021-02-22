@@ -1,0 +1,63 @@
+<div class="container emp-footballer">
+  <form method="post">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="footballer-img">
+          <img src="{{footballerPictureUrl}}" alt=""/>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="footballer-head">
+          <h5>
+            {{statement?.footballer.firstName}} {{statement?.footballer.lastName}}
+          </h5>
+          <h6><b>Team</b> : {{statement?.team === null ? 'Without team' : statement?.team.name}}</h6>
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="players-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-8">
+        <div class="tab-content footballer-tab" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="row">
+              <div class="col-md-3">
+                <label>Age</label>
+              </div>
+              <div class="col-md-3">
+                <label>Experience</label>
+              </div>
+              <div class="col-md-3">
+                <label>Price</label>
+              </div>
+              <div class="col-md-3">
+                <label>Team</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <p>{{statement?.footballer.age}}</p>
+              </div>
+              <div class="col-md-3">
+                <p>{{statement?.footballer.experience}}</p>
+              </div>
+              <div class="col-md-3">
+                <p>{{statement?.footballer.price}}</p>
+              </div>
+              <div class="col-md-3">
+                <a *ngIf="statement?.team !== null" [routerLink]="['/team']" [queryParams]="{teamId:statement?.team.id}" class="btn btn-outline-info tooltips">Show info</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
